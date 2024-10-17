@@ -12,12 +12,12 @@ let Songs = [
     {
         h2: "Munde Pindan De",
         image: "assets/Jalwa.jpg",
-        song: "assets/Munde Pindan de.mp3"
+        song: "assets/Munde Pindan De.mp3"
     },
     {
         h2: "Opinion",
         image: "assets/manifest.webp",
-        song: "assets/Opionin.mp3"
+        song: "assets/Opinion.mp3"
     },
     {
         h2: "Panjabi",
