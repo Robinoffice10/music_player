@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* @import url('https://fonts.googleapis.com/css2?family=Sixtyfour+Convergence&display=swap'); */
+
+body {
+    margin: 0;
+    background-color: antiquewhite;
+    width: 100%;
+    
+}
+
+.cont {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0%;
+
+}
+
+.music {
+    background-color: rgb(142, 16, 16);
+    height: 30rem;
+    width: 350px;
+    border: 5px solid black;
+    border-radius: 20px;
+    margin: 0px 0 20px 0;
+}
+
+.songlist {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    border: solid black 1px;
+    border-radius: 5px;
+    font-size: 17px;
+    width: 50px;
+    margin-top: 0px;
+    background-color: white;
+}
+
+#img {
+    margin: 30px 0 0px 0;
+    border: solid rgb(255, 255, 255) 2px;
+    border-radius: 20px;
+    gap: 30p;
+}
+
+.btn1 {
+    font-size: 30px;
+     margin: 0px 9px 0px 9px;
+    padding: 0 5px 0px 5px;
+    border: none;
+    background-color: transparent;
+    color: rgb(142, 16, 16);
+}
+
+button {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    gap: 30px;
+}
+
+.cont .songs {
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 10px;
+    font-family: Oswald, poppins;
+}
+
+.cont h2 {
+    font-size: 25px;
+    border: 2px solid black;
+}
+
+#audio{
+    display: none;
+}
