@@ -22,10 +22,20 @@ body {
 .music {
     background-color: rgb(142, 16, 16);
     height: 30rem;
+<<<<<<< HEAD
     width: 350px;
     border: 5px solid black;
     border-radius: 20px;
     margin: 0px 0 20px 0;
+=======
+    width: 25%;
+    border: 5px solid black;
+    border-radius: 20px;
+    margin: 0px 0 20px 0;
+   
+
+
+>>>>>>> 7ac238b83f22711ad77413dbe74bed5c394e990e
 }
 
 .songlist {
@@ -76,8 +86,11 @@ button {
 .cont h2 {
     font-size: 25px;
     border: 2px solid black;
+<<<<<<< HEAD
 }
 
 #audio{
     display: none;
+=======
+>>>>>>> 7ac238b83f22711ad77413dbe74bed5c394e990e
 }
