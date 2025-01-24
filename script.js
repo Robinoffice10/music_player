@@ -1,74 +1,46 @@
 let songs = [
     {
-<<<<<<< HEAD
         title: "Paparazzi",
         image: "assets/Patandar.jpg",
         song: "assets/paparazzi.mp3"
     },
     {
         title: "Opinion",
-=======
-        h2: "Opinion",
->>>>>>> 7ac238b83f22711ad77413dbe74bed5c394e990e
         image: "assets/manifest.webp",
         song: "assets/Opinion.mp3"
     },
     {
-<<<<<<< HEAD
         title: "Score",
-=======
-        h2: "Score",
->>>>>>> 7ac238b83f22711ad77413dbe74bed5c394e990e
         image: "assets/awara.jpg",
         song: "assets/Score.mp3"
     },
     {
-<<<<<<< HEAD
         title: "Never Ever",
         image: "assets/Patandar.jpg",
         song: "assets/never_ever.mp3"
     },
     {
         title: "Woah",
-=======
-        h2: "Woah",
->>>>>>> 7ac238b83f22711ad77413dbe74bed5c394e990e
         image: "assets/Chobar.jpg",
         song: "assets/Woah.mp3"
     },
     {
-<<<<<<< HEAD
         title: "Calculations",
-=======
-        h2: "Calculations",
->>>>>>> 7ac238b83f22711ad77413dbe74bed5c394e990e
         image: "assets/Saroor.jpg",
         song: "assets/Calculations.mp3"
     },
     {
-<<<<<<< HEAD
         title: "Munde Pindan De",
-=======
-        h2: "Munde Pindan De",
->>>>>>> 7ac238b83f22711ad77413dbe74bed5c394e990e
         image: "assets/Jalwa.jpg",
         song: "assets/Munde Pindan De.mp3"
     },
     {
-<<<<<<< HEAD
         title: "Panjabi",
-=======
-        h2: "Panjabi",
->>>>>>> 7ac238b83f22711ad77413dbe74bed5c394e990e
         image: "assets/Saroor.jpg",
         song: "assets/Panjabi.mp3"
     },
     {
-<<<<<<< HEAD
         title: "Youth Flow",
-=======
-        h2: "Youth Flow",
->>>>>>> 7ac238b83f22711ad77413dbe74bed5c394e990e
         image: "assets/Chobar.jpg",
         song: "assets/Youth_Flow .mp3"
     },
@@ -76,42 +48,24 @@ let songs = [
 
 
 
-<<<<<<< HEAD
 let title = document.querySelector("#title");
 let songDesc = document.querySelector("#songlist");
 let ImageTag = document.getElementById("img");
-=======
-let h2 = document.querySelector("#title");
-let ImageTag = document.getElementById("img");
-let songLength = document.querySelector('.songlist');
-
->>>>>>> 7ac238b83f22711ad77413dbe74bed5c394e990e
 //Button Part
 let playbtn = document.getElementById("play");
 let forwardbtn = document.getElementById("forward");
 let reversebtn = document.getElementById("reverse");
 let audio = document.getElementById("audio");
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 7ac238b83f22711ad77413dbe74bed5c394e990e
 let progress_container = document.getElementById("progress-container");
 let progress = document.getElementById("progress");
 let audio_current_time = document.getElementById("audio_current_time");
 let audio_duration = document.getElementById("audio_duration");
 let shuffle_btn = document.getElementById("shuffle");
-<<<<<<< HEAD
 let repeat_btn = document.getElementById("repeat");
-=======
-let repeat_all_btn = document.getElementById("repeat_all");
-
->>>>>>> 7ac238b83f22711ad77413dbe74bed5c394e990e
 let isShuffle = false;
 let isRepeatAll = false
 let originalSongs = [...songs];
 
-<<<<<<< HEAD
 //Song Time
 
 let audioDu = '00:00', audioCT = '00:00';
@@ -152,26 +106,6 @@ function updateSongDetails(position) {
 updateSongDetails(position)
 
 function playAudio() {
-=======
-
-function updateSongDetails() {
-    songName.innerHTML = songs[position].title;
-    songDesc.innerHTML = songs[position].genre;
-    songImg.src = songs[pos].img;
-    audio.src = songs[pos].src;
-}
-
-//Play Function
-audio.setAttribute('src', songs[0].song)
-ImageTag.src = songs[0].image;
-h2.innerHTML = songs[0].h2;
-isPlaying = 0;
-
-// playbtn
-let position =0;
-
-function play() {
->>>>>>> 7ac238b83f22711ad77413dbe74bed5c394e990e
     if (playbtn.classList.contains('bi-play-circle-fill')) {
         playbtn.classList.remove('bi-play-circle-fill')
         playbtn.classList.add('bi-pause-circle-fill')
@@ -183,13 +117,7 @@ function play() {
         audio.pause()
     }
 }
-<<<<<<< HEAD
 playbtn.addEventListener('click', playAudio)
-=======
-playbtn.addEventListener('click', play)
-
-
->>>>>>> 7ac238b83f22711ad77413dbe74bed5c394e990e
 
 
 //forward btn System
@@ -199,21 +127,10 @@ forwardbtn.addEventListener('click', () => {
     } else {
         position++;
     }
-<<<<<<< HEAD
     updateSongDetails(position);
     playbtn.classList.remove('bi-play-circle-fill')
     playbtn.classList.add('bi-pause-circle-fill')
     audio.play()
-=======
-    audio.src = songs[position].song;
-    ImageTag.src = songs[position].image;
-    h2.innerHTML = songs[position].h2;
-
-    // songLength 
-    songLength.innerHTML = (position + 1) + "/" + songs.length;
-
-    audio.play();
->>>>>>> 7ac238b83f22711ad77413dbe74bed5c394e990e
 });
 
 //reverse btn System
@@ -223,7 +140,6 @@ reversebtn.addEventListener('click', () => {
     } else {
         position--;
     }
-<<<<<<< HEAD
     updateSongDetails(position);
     playbtn.classList.remove('bi-play-circle-fill')
     playbtn.classList.add('bi-pause-circle-fill')
@@ -262,21 +178,6 @@ repeat_btn.addEventListener('click', ()=>{
 // audio.addEventListener('timeupdate', function() {
 //     const progress = (audio.currentTime / audio.duration) * 100;
 //     progress.style.width = progress + '%';
-=======
-    audio.src = songs[position].song;
-    ImageTag.src = songs[position].image;
-    h2.innerHTML = songs[position].h2;
-
-    // songLength 
-    songLength.innerHTML = (position + 1) + "/" + songs.length;
-
-    audio.play();
-
-});
-
-
-// progress bar
->>>>>>> 7ac238b83f22711ad77413dbe74bed5c394e990e
 
 
 
@@ -371,31 +272,3 @@ repeat_btn.addEventListener('click', ()=>{
 //     let { duration, currentTime } = audio;
 //     console.log(duration, currentTime);
 // });
-<<<<<<< HEAD
-// this is test lline
-// add this also 
-=======
-
-
-
-
-
-// updateSongDetails();
-// audio.addEventListener("timeupdate", updateProgress);
-// shuffle_btn.addEventListener("click", shuffle);
-// progress_container.addEventListener("click", setProgress);
-// audio.addEventListener("ended", next);
-// audio_pause_btn.addEventListener("click", () => {
-//   if (audio.paused) {
-//     audio.play();
-//     audio_pause_btn.children[0].className = "bi bi-pause-fill";
-//   } else {
-//     audio.pause();
-//     audio_pause_btn.children[0].className = "bi bi-play-fill";
-//   }
-// });
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   audio.play();
-// });
->>>>>>> 7ac238b83f22711ad77413dbe74bed5c394e990e
