@@ -69,25 +69,27 @@ let originalSongs = [...songs];
 //Song Time
 
 let audioDu = '00:00', audioCT = '00:00';
-audio.addEventListener('loadedmetadata',()=>{
+audio.addEventListener('loadedmetadata', () => {
     audioDu = audio.duration;
-    let mint = parseInt((parseInt(audioDu/60))/10)==0? '0'+parseInt(audioDu/60) : parseInt(audioDu/60) ;
-    let sec = parseInt((parseInt(audioDu%60))/10)==0? parseInt(audioDu%60)+'0' : parseInt(audioDu%60) ;
-    audio_duration.innerHTML= mint +':'+ sec;
+    let mint = parseInt((parseInt(audioDu / 60)) / 10) == 0 ? '0' + parseInt(audioDu / 60) : parseInt(audioDu / 60);
+    let sec = parseInt((parseInt(audioDu % 60)) / 10) == 0 ? parseInt(audioDu % 60) + '0' : parseInt(audioDu % 60);
+    audio_duration.innerHTML = mint + ':' + sec;
 })
 
-audio.addEventListener('timeupdate',()=>{
+audio.addEventListener('timeupdate', () => {
     audioCT = audio.currentTime;
-    let CTmint = parseInt((parseInt(audioCT/60))/10)==0? '0'+parseInt(audioCT/60) : parseInt(audioCT/60) ;
-    let CTsec = parseInt((parseInt(audioCT%60))/10)==0? '0' +parseInt(audioCT%60) : parseInt(audioCT%60) ;
-    audio_current_time.innerText=CTmint+":"+CTsec;
+    let CTmint = parseInt((parseInt(audioCT / 60)) / 10) == 0 ? '0' + parseInt(audioCT / 60) : parseInt(audioCT / 60);
+    let CTsec = parseInt((parseInt(audioCT % 60)) / 10) == 0 ? '0' + parseInt(audioCT % 60) : parseInt(audioCT % 60);
+    audio_current_time.innerText = CTmint + ":" + CTsec;
     progress.style.width = progress + '%';
+    const progressPercent = (audioCT / audio.duration) * 100;
+    progress.style.width = `${progressPercent}%`;
 })
 
 // Allow clicking on the progress bar to seek
 
 
-progress.parentElement.addEventListener('click', function(e) {
+progress.parentElement.addEventListener('click', function (e) {
     const progressWidth = progress.parentElement.offsetWidth;
     const clickPosition = e.offsetX;
     const newTime = (clickPosition / progressWidth) * audio.duration;
@@ -96,10 +98,10 @@ progress.parentElement.addEventListener('click', function(e) {
 
 
 // playbtn
-let position =0;
+let position = 0;
 function updateSongDetails(position) {
     audio.setAttribute('src', songs[position].song)
-    songDesc.innerHTML = `${position+1}/${songs.length}`;
+    songDesc.innerHTML = `${position + 1}/${songs.length}`;
     ImageTag.src = songs[position].image;
     title.innerHTML = songs[position].title;
 }
@@ -146,129 +148,66 @@ reversebtn.addEventListener('click', () => {
     audio.play()
 });
 
-//repeat btn System
-console.log(repeat_btn);
 
-let repeatBtnFlag = 'ALL';
-repeat_btn.addEventListener('click', ()=>{
-    if (repeatBtnFlag==='NO') {
-               
-        repeat_btn.classList.remove('bi-repeat-1')
-        repeat_btn.classList.remove('text-primary')
-        repeat_btn.classList.add('bi-repeat')
-        repeatBtnFlag = "ALL";
-    }else if(repeatBtnFlag==='ALL'){
-        repeat_btn.classList.remove('bi-repeat-1')
-        repeat_btn.classList.add('bi-repeat')
-        repeat_btn.classList.add('text-primary')
-        repeatBtnFlag = 'ONE';
-    }else{
-        repeat_btn.classList.remove('bi-repeat')
-        repeat_btn.classList.remove('text-primary')
-        repeat_btn.classList.add('bi-repeat-1')
-        repeatBtnFlag = 'NO';
+
+// Repeat button functionality
+let repeatBtnFlag = 'NO'; // Default is No Repeat
+repeat_btn.addEventListener('click', () => {
+    if (repeatBtnFlag === 'NO') {
+        // No Repeat: Just set the class for no repeat (initial state)
+        repeat_btn.classList.remove('bi-repeat-1');
+        repeat_btn.classList.add('bi-repeat');  
+        repeatBtnFlag = 'ONE';  
+        repeat_btn.style.color = "";  
+    } else if (repeatBtnFlag === 'ONE') {
+        // Repeat One: Switch to Repeat All
+        repeat_btn.classList.remove('bi-repeat');
+        repeat_btn.classList.add('bi-repeat-1');  
+        repeatBtnFlag = 'ALL';  
+        audio.loop = false;     
+        repeat_btn.style.color = "";  
+    } else {
+        // Repeat All: Change color to blue and set loop to all songs
+        repeat_btn.classList.remove('bi-repeat-1');
+        repeat_btn.classList.add('bi-repeat');  
+        repeatBtnFlag = 'NO'; 
+        audio.loop = true;    
+        repeat_btn.style.color = "#0000ff";  
     }
-})
+});
 
+// Song ended event handler
+audio.addEventListener('ended', () => {
+    if (repeatBtnFlag === 'ALL') {
+        position = (position + 1) % songs.length;
+        updateSongDetails(position);
+        audio.play(); 
+    } else if (repeatBtnFlag === 'ONE') {
+        audio.play(); 
+    } else {
+        
+    }
+});
 
-// progress bar
+// Function to shuffle the songs array
+function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+}
 
+// Function to play a random song after shuffle
+function playRandomSong() {
+    const randomIndex = Math.floor(Math.random() * songs.length);
+    position = randomIndex; 
+    updateSongDetails(position);
+    audio.play(); 
+}
 
+shuffle_btn.addEventListener('click', function () {
+    shuffleArray(songs);
+    playRandomSong(); 
+    this.classList.toggle('skyblue');
+});
 
-// audio.addEventListener('timeupdate', function() {
-//     const progress = (audio.currentTime / audio.duration) * 100;
-//     progress.style.width = progress + '%';
-
-
-
-// let updateProgress = () => {
-//     let { duration, currentTime } = audio;
-//     let progressPercent = (currentTime / duration) * 100;
-//     progress.style.width = `${progressPercent}%`;
-//     audio_current_time.innerHTML = sToTime(currentTime);
-//     audio_duration.innerHTML = isNaN(duration) ? "00:00" : sToTime(duration);
-//   };
-  
-//   let setProgress = (e) => {
-//     let width = progress_container.clientWidth;
-//     let clickX = e.offsetX;
-//     let duration = audio.duration;
-//     audio.currentTime = (clickX / width) * duration;
-//   };
-  
-//   function sToTime(t) {
-
-// updateSongDetails();
-// audio.addEventListener("timeupdate", updateProgress);
-// shuffle_btn.addEventListener("click", shuffle);
-// progress_container.addEventListener("click", setProgress);
-// audio.addEventListener("ended", next);
-// audio_pause_btn.addEventListener("click", () => {
-//   if (audio.paused) {
-//     audio.play();
-//     audio_pause_btn.children[0].className = "bi bi-pause-fill";
-//   } else {
-//     audio.pause();
-//     audio_pause_btn.children[0].className = "bi bi-play-fill";
-//   }
-// });
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   audio.play();
-// });
-//     return padZero(parseInt((t / 60) % 60)) + ":" + padZero(parseInt(t % 60));
-//   }
-  
-//   function padZero(v) {
-//     return v < 10 ? "0" + v : v;
-//   }
-
-
-//   shuffle btn
-
-
-// let shuffle = () => {
-//     if (!isShuffle) {
-//       shuffle_btn.childNodes[0].classList.add("text-primary");
-//       shuffleSongs(songs); 
-//       isShuffle = true;
-//     } else {
-//       shuffle_btn.childNodes[0].classList.remove("text-primary");
-//       songs = [...originalSongs]; 
-//       isShuffle = false;
-//     }
-//     pos = 0;
-//     updateSongDetails();
-//     audio.play();
-//     audio_pause_btn.children[0].className = "bi bi-pause-fill";
-//   };
-
-
-//   repeat btn
-
-
-
-// let repeatAll = () => {
-//     if (!isRepeatAll) {
-//       repeat_all_btn.childNodes[0].classList.add("text-primary");
-//       isRepeatAll = true;
-//       audio.play();
-//       audio_pause_btn.children[0].className = "bi bi-pause-fill";
-//       audio.addEventListener("ended", next);
-//     } else {
-//       repeat_all_btn.childNodes[0].classList.remove("text-primary");
-//       isRepeatAll = false;
-//       audio.addEventListener("ended", ()=>{
-//         audio.pause();
-//         audio_pause_btn.children[0].className = "bi bi-play-fill";
-//       })
-//     } 
-//   };
-
-
-
-
-// audio.addEventListener("timeupadte", () => {
-//     let { duration, currentTime } = audio;
-//     console.log(duration, currentTime);
-// });
